@@ -42,7 +42,10 @@ export default class App extends Component {
    items: [{
      scale: 1,
      type: 'linear'
-   }]
+   }],
+   settings: {
+     displayUnit: 'px'
+   }
  };
 
  changeStateItem = (index, key, value) => {
@@ -58,6 +61,14 @@ export default class App extends Component {
    })
  };
 
+  handleDisplayUnitChange = (event) => {
+    this.setState({
+      settings: {
+        displayUnit: event.target.value
+      }
+    })
+  };
+
  handleScaleChange = (index, value) => {
    this.changeStateItem(index, 'scale', value)
  };
@@ -66,7 +77,7 @@ export default class App extends Component {
    this.changeStateItem(index, 'type', event.currentTarget.value)
  };
 
- render (_, { items }) {
+ render (_, { items, settings }) {
    const scaler = scalers.get(items[0].type)
    const sizes = Array.from(new Array(6)).map((_, currentIndex) => scaler({
      currentIndex,
@@ -79,12 +90,14 @@ export default class App extends Component {
      <div id='app'>
        <Header />
        <main>
-         <Preview sizes={sizes} />
+         <Preview settings={settings} sizes={sizes} />
        </main>
        <Controls
          items={items}
+         onDisplayUnitChange={this.handleDisplayUnitChange}
          onScaleChange={this.handleScaleChange}
          onTypeChange={this.handleTypeChange}
+         settings={settings}
        />
        <Footer />
      </div>

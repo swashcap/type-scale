@@ -1,11 +1,12 @@
 /** @jsx h */
 import { h } from 'preact'
 
+import ItemPicker from './item-picker'
 import NumericPicker from './numeric-picker'
 import TextPicker from './text-picker'
 import style from './style.css'
 
-export default ({ items, onScaleChange, onTypeChange, ...rest }) => (
+export default ({ items, onDisplayUnitChange, onScaleChange, onTypeChange, settings, ...rest }) => (
   <form class={style.controls} {...rest}>
     {items.map(({ scale, type }, index) => (
 
@@ -29,6 +30,17 @@ export default ({ items, onScaleChange, onTypeChange, ...rest }) => (
         />
       </fieldset>
     ))}
+
+    <ItemPicker
+      label='Display units'
+      items={{
+        em: 'em units',
+        px: 'pixels'
+      }}
+      name='display-unit'
+      onChange={onDisplayUnitChange}
+      value={settings.displayUnit}
+    />
 
   </form>
 )
