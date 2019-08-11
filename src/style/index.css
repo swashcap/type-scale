@@ -49,11 +49,23 @@ body {
 		height: 100vh;
 		min-height: 0;
 	}
-	#app > *:not(main) {
+	#app > * {
 		width: 15rem;
 	}
 	#app main {
 		height: 100vh;
 		width: calc(100vw - 15rem);
 	}
+}
+@media (min-width: 40em) {
+  #app > * {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+  #app > * {
+    width: 20rem;
+  }
+  #app main {
+    width: calc(100vw - 20rem)
+  }
 }
