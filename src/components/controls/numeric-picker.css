@@ -14,13 +14,36 @@
   font-family: inherit;
   font-size: 100%;
   font-weight: 700;
-  line-height: 1.5em;
+  height: 1.5em;
+  line-height: 1;
+  margin: 0;
   padding: 0;
   text-align: center;
   width: 1.5em;
 }
-.number-picker-button-alt {
+.numeric-picker-button:hover {
+  background: purple;
+}
+.numeric-picker-button:active {
+  background: mediumvioletred;
+}
+
+.numeric-picker-button-alt {
   background: orangered;
+}
+.numeric-picker-button-alt:hover {
+  background: crimson;
+}
+.numeric-picker-button-alt:active {
+  background: mediumvioletred;
+}
+
+.numeric-picker-icon {
+  height: .75em;
+  width: .75em;
+}
+.numeric-picker-icon path {
+  fill: #fff;
 }
 
 .numeric-picker-input {

@@ -1,6 +1,7 @@
 /** @jsx h */
 import { h, Component } from 'preact'
 
+import Icon from '../icon'
 import Label from './label'
 import style from './numeric-picker.css'
 
@@ -30,7 +31,7 @@ export default class NumericPicker extends Component {
             onClick={this.handleDecrementClick}
             type='button'
           >
-            <span aria-hidden='true'>-</span>
+            <Icon aria-hidden='true' class={style['numeric-picker-icon']} icon='minus' />
           </button>
           <input
             class={style['numeric-picker-input']}
@@ -45,11 +46,11 @@ export default class NumericPicker extends Component {
           <button
             aria-controls={id}
             aria-label='Increase scale'
-            class={`${style['numeric-picker-button']} ${style['number-picker-button-alt']}`}
+            class={`${style['numeric-picker-button']} ${style['numeric-picker-button-alt']}`}
             onClick={this.handleIncrementClick}
             type='button'
           >
-            <span aria-hidden='true'>+</span>
+            <Icon aria-hidden='true' class={style['numeric-picker-icon']} icon='plus' />
           </button>
         </div>
       </div>
