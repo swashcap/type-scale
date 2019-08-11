@@ -1,0 +1,36 @@
+.item-picker {
+  border: none;
+  margin-left: -.5rem;
+  margin-right: -.5rem;
+  padding: 0;
+}
+
+.item-picker-legend {
+  padding-right: .5rem;
+  padding-left: .5rem;
+}
+
+.item-picker-label {
+  cursor: pointer;
+  display: inline-block;
+  padding: .5rem;
+}
+
+/**
+ * Hide with `opacity`, presumably for screen readers.
+ * {@link http://wtfforms.com}
+ */
+.item-picker-input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.item-picker-input:checked ~ .item-picker-text {
+  color: orangered;
+  font-weight: 700;
+}
+.item-picker-text {
+  color: indigo;
+  text-decoration: underline;
+}
