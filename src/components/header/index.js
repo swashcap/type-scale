@@ -1,7 +1,7 @@
 /** @jsx h */
 import { h } from 'preact'
 
-import style from './style'
+import style from './style.css'
 
 export default ({ class: className, ...rest }) => (
   <header class={style.header} role='contentinfo' {...rest}>
