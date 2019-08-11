@@ -6,6 +6,37 @@ import Footer from './footer'
 import Header from './header'
 import Preview from './preview'
 
+/**
+ * {@link http://spencermortensen.com/articles/typographic-scale/}
+ */
+export const classic = ({
+  currentIndex,
+  numberOfItems,
+  scale,
+  seed
+}) => seed * Math.pow(2, (currentIndex + 1) / numberOfItems) * scale
+
+export const linear = ({
+  currentIndex,
+  scale,
+  seed
+}) => (currentIndex + 1) * seed * scale
+
+/**
+ * {@link https://en.wikipedia.org/wiki/Golden_ratio}
+ */
+export const goldenRatio = ({
+  currentIndex,
+  scale,
+  seed
+}) => seed * Math.pow(1.618, currentIndex + 1) * scale
+
+const scalers = new Map([
+  ['classic', classic],
+  ['golden-ratio', goldenRatio],
+  ['linear', linear]
+])
+
 export default class App extends Component {
  state = {
    items: [{
@@ -36,7 +67,13 @@ export default class App extends Component {
  };
 
  render (_, { items }) {
-   const sizes = [0.75, 1, 1.25, 1.5, 1.75, 2.5].map(s => s * items[0].scale)
+   const scaler = scalers.get(items[0].type)
+   const sizes = Array.from(new Array(6)).map((_, currentIndex) => scaler({
+     currentIndex,
+     numberOfItems: 6,
+     scale: items[0].scale,
+     seed: 12
+   }))
 
    return (
      <div id='app'>
