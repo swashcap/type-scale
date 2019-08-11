@@ -17,18 +17,22 @@
     "babel-eslint": "^10.0.2",
     "eslint": "^6.1.0",
     "eslint-plugin-jest": "^22.15.0",
-    "jest": "^21.2.1",
-    "jest-preset-preact": "^1.0.0",
+    "jest": "^24.8.0",
+    "jest-preact-preset": "^1.0.0",
     "per-env": "^1.0.2",
-    "preact-cli": "^2.1.0",
+    "preact-cli": "^3.0.0-rc.4",
     "preact-render-spy": "^1.2.1",
+    "preact-render-to-string": "^4.1.0",
     "standard": "^12.0.0"
   },
   "dependencies": {
     "preact": "^8.2.6"
   },
   "jest": {
-    "preset": "jest-preset-preact"
+    "preset": "jest-preact-preset",
+    "moduleNameMapper": {
+      "\\.css$": "<rootDir>/tests/__mocks__/fileMocks.js"
+    }
   },
   "standard": {
     "env": {
