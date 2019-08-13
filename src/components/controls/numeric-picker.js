@@ -5,21 +5,22 @@ import Icon from '../icon'
 import Label from './label'
 import style from './numeric-picker.css'
 
-const STEP = 0.1
+const DEFAULT_STEP = 1
+
 export default class NumericPicker extends Component {
   handleDecrementClick = () => {
-    const { onChange, value } = this.props
+    const { onChange, step = DEFAULT_STEP, value } = this.props
 
-    onChange(Math.round((value - STEP) * 10) / 10)
+    onChange(Math.round((value - step) * 10) / 10)
   };
 
   handleIncrementClick = () => {
-    const { onChange, value } = this.props
+    const { onChange, step = DEFAULT_STEP, value } = this.props
 
-    onChange(Math.round((value + STEP) * 10) / 10)
+    onChange(Math.round((value + step) * 10) / 10)
   };
 
-  render ({ id, label, onChange, value, ...rest }) {
+  render ({ id, label, onChange, step = DEFAULT_STEP, value, ...rest }) {
     return (
       <div {...rest}>
         <Label for={id}>{label}</Label>
@@ -39,7 +40,7 @@ export default class NumericPicker extends Component {
             max={10}
             min={0}
             onChange={onChange}
-            step={STEP}
+            step={step}
             type='number'
             value={value}
           />
