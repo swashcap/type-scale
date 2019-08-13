@@ -2,6 +2,7 @@
 import { h } from 'preact'
 
 import style from './style.css'
+import { cn } from '../../helpers/classnames'
 
 export default ({
   children,
@@ -27,7 +28,7 @@ export default ({
     )
 
   return (
-    <div class={`${style.heading} ${className}`} {...rest}>
+    <div class={cn(style.heading, className)} {...rest}>
       <Component class={style['heading-component']} style={{ fontSize: `${fontSize}px` }}>
         {children}
       </Component>
