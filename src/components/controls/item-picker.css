@@ -13,7 +13,6 @@
 .item-picker-label {
   cursor: pointer;
   display: inline-block;
-  padding: .25rem .5rem;
 }
 
 /**
@@ -26,11 +25,19 @@
   z-index: -1;
 }
 
+.item-picker-input:focus ~ .item-picker-text {
+  border-color: orangered;
+}
+
 .item-picker-input:checked ~ .item-picker-text {
   color: orangered;
   font-weight: 700;
 }
 .item-picker-text {
+  border: 1px solid transparent;
+  border-radius: 2px;
   color: indigo;
+  margin-top: -.25rem;
+  padding: .5rem;
   text-decoration: underline;
 }
