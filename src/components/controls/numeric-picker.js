@@ -20,6 +20,10 @@ export default class NumericPicker extends Component {
     onChange(Math.round((value + step) * 10) / 10)
   };
 
+  handleInputChange = (event) => {
+    this.props.onChange(event.currentTarget.value)
+  };
+
   render ({ id, label, onChange, step = DEFAULT_STEP, value, ...rest }) {
     return (
       <div {...rest}>
@@ -41,7 +45,7 @@ export default class NumericPicker extends Component {
             id={id}
             max={10}
             min={0}
-            onChange={onChange}
+            onChange={this.handleInputChange}
             step={step}
             type='number'
             value={value}
