@@ -2,45 +2,55 @@
   align-items: center;
   display: flex;
   flex-direction: row;
+  margin-left: -.5rem;
+  margin-right: -.5rem;
 }
 
 .numeric-picker-button {
-  border: 1px solid transparent;
-  background: indigo;
-  border-radius: 100%;
+  background: none;
+  border: none;
   color: #fff;
   cursor: pointer;
   display: inline-block;
   font-family: inherit;
   font-size: 100%;
   font-weight: 700;
-  height: 1.5em;
   line-height: 1;
   margin: 0;
-  padding: 0;
+  padding: .5rem;
   text-align: center;
+}
+.numeric-picker-button > span {
+  border: 1px solid transparent;
+  background: indigo;
+  border-radius: 100%;
+  display: inline-block;
+  height: 1.5em;
   width: 1.5em;
 }
-.numeric-picker-button:hover {
+.numeric-picker-button:focus > span,
+.numeric-picker-button:hover > span {
   background: purple;
 }
-.numeric-picker-button:active {
+.numeric-picker-button:active > span {
   background: mediumvioletred;
 }
 
-.numeric-picker-button-alt {
+.numeric-picker-button-alt > span {
   background: orangered;
 }
-.numeric-picker-button-alt:hover {
+.numeric-picker-button-alt:focus > span,
+.numeric-picker-button-alt:hover > span {
   background: crimson;
 }
-.numeric-picker-button-alt:active {
+.numeric-picker-button-alt:active > span {
   background: mediumvioletred;
 }
 
 .numeric-picker-icon {
-  height: .75em;
-  width: .75em;
+  height: .75rem;
+  margin-top: .333rem;
+  width: .75rem;
 }
 .numeric-picker-icon path {
   fill: #fff;
@@ -55,7 +65,7 @@
   font-size: 100%;
   flex-grow: 2;
   line-height: 1;
-  margin: 0 .5em;
+  margin: 0;
   padding: .25em;
   text-align: center;
 }

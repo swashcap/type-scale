@@ -32,7 +32,9 @@ export default class NumericPicker extends Component {
             onClick={this.handleDecrementClick}
             type='button'
           >
-            <Icon aria-hidden='true' class={style['numeric-picker-icon']} icon='minus' />
+            <span>
+              <Icon aria-hidden='true' class={style['numeric-picker-icon']} icon='minus' />
+            </span>
           </button>
           <input
             class={style['numeric-picker-input']}
@@ -51,7 +53,9 @@ export default class NumericPicker extends Component {
             onClick={this.handleIncrementClick}
             type='button'
           >
-            <Icon aria-hidden='true' class={style['numeric-picker-icon']} icon='plus' />
+            <span>
+              <Icon aria-hidden='true' class={style['numeric-picker-icon']} icon='plus' />
+            </span>
           </button>
         </div>
       </div>
