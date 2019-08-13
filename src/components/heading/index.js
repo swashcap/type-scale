@@ -19,7 +19,7 @@ export default ({
     ? (
 
       <code class={style['heading-code']}>
-        {fontSize % 1 ? fontSize.toFixed(2) : fontSize}<abbr title='pixels'>px</abbr>
+        {fontSize % 1 ? fontSize.toFixed(2) : fontSize}<abbr class={style['heading-abbr']} title='pixels'>px</abbr>
       </code>
     ) : (
       <code class={style['heading-code']}>

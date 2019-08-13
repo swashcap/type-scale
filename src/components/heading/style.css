@@ -33,3 +33,7 @@
     width: 5.5em;
   }
 }
+
+.heading-abbr[title] {
+  text-decoration: none;
+}
