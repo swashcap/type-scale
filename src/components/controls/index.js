@@ -10,8 +10,9 @@ export default ({ items, onDisplayUnitChange, onScaleChange, onTypeChange, setti
   <form class={style.controls} {...rest}>
     {items.map(({ scale, type }, index) => (
 
-      <fieldset class={style['controls-item']}>
+      <fieldset class={style['controls-fieldset']}>
         <TextPicker
+          class={style['controls-item']}
           id={`controls-type-${index}`}
           label='Type'
           onChange={(event) => onTypeChange(index, event)}
@@ -23,6 +24,7 @@ export default ({ items, onDisplayUnitChange, onScaleChange, onTypeChange, setti
           value={type}
         />
         <NumericPicker
+          class={style['controls-item']}
           id={`controls-scale-${index}`}
           label='Scale'
           onChange={(event) => onScaleChange(index, event)}
