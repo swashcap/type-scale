@@ -38,28 +38,29 @@ const scalers = new Map([
 ])
 
 export default class App extends Component {
- state = {
-   items: [{
-     scale: 1,
-     type: 'linear'
-   }],
-   settings: {
-     displayUnit: 'px'
-   }
- };
+  state = {
+    items: [{
+      scale: 1,
+      seed: 12,
+      type: 'linear'
+    }],
+    settings: {
+      displayUnit: 'px'
+    }
+  };
 
- changeStateItem = (index, key, value) => {
-   this.setState({
-     items: this.state.items.map((item, i) => (
-       i === index
-         ? {
-           ...item,
-           [key]: value
-         }
-         : item
-     ))
-   })
- };
+  changeStateItem = (index, key, value) => {
+    this.setState({
+      items: this.state.items.map((item, i) => (
+        i === index
+          ? {
+            ...item,
+            [key]: value
+          }
+          : item
+      ))
+    })
+  };
 
   handleDisplayUnitChange = (event) => {
     this.setState({
@@ -69,38 +70,43 @@ export default class App extends Component {
     })
   };
 
- handleScaleChange = (index, value) => {
-   this.changeStateItem(index, 'scale', value)
- };
+  handleScaleChange = (index, value) => {
+    this.changeStateItem(index, 'scale', value)
+  };
 
- handleTypeChange = (index, event) => {
-   this.changeStateItem(index, 'type', event.currentTarget.value)
- };
+  handleSeedChange = (index, value) => {
+    this.changeStateItem(index, 'seed', value)
+  };
 
- render (_, { items, settings }) {
-   const scaler = scalers.get(items[0].type)
-   const sizes = Array.from(new Array(6)).map((_, currentIndex) => scaler({
-     currentIndex,
-     numberOfItems: 6,
-     scale: items[0].scale,
-     seed: 12
-   }))
+  handleTypeChange = (index, event) => {
+    this.changeStateItem(index, 'type', event.currentTarget.value)
+  };
 
-   return (
-     <div id='app'>
-       <Header />
-       <main>
-         <Preview settings={settings} sizes={sizes} />
-       </main>
-       <Controls
-         items={items}
-         onDisplayUnitChange={this.handleDisplayUnitChange}
-         onScaleChange={this.handleScaleChange}
-         onTypeChange={this.handleTypeChange}
-         settings={settings}
-       />
-       <Footer />
-     </div>
-   )
- }
+  render (_, { items, settings }) {
+    const scaler = scalers.get(items[0].type)
+    const sizes = Array.from(new Array(6)).map((_, currentIndex) => scaler({
+      currentIndex,
+      numberOfItems: 6,
+      scale: items[0].scale,
+      seed: items[0].seed
+    }))
+
+    return (
+      <div id='app'>
+        <Header />
+        <main>
+          <Preview settings={settings} sizes={sizes} />
+        </main>
+        <Controls
+          items={items}
+          onDisplayUnitChange={this.handleDisplayUnitChange}
+          onScaleChange={this.handleScaleChange}
+          onSeedChange={this.handleSeedChange}
+          onTypeChange={this.handleTypeChange}
+          settings={settings}
+        />
+        <Footer />
+      </div>
+    )
+  }
 }
