@@ -40,9 +40,10 @@ const scalers = new Map([
 export default class App extends Component {
   state = {
     items: [{
-      scale: 1,
-      seed: 12,
-      type: 'linear'
+      coefficient: 1,
+      fontFamily: 'sans-serif',
+      scale: 'linear',
+      seed: 12
     }],
     settings: {
       displayUnit: 'px'
@@ -62,6 +63,10 @@ export default class App extends Component {
     })
   };
 
+  handleCoefficientChange = (index, value) => {
+    this.changeStateItem(index, 'coefficient', value)
+  };
+
   handleDisplayUnitChange = (event) => {
     this.setState({
       settings: {
@@ -70,24 +75,24 @@ export default class App extends Component {
     })
   };
 
-  handleScaleChange = (index, value) => {
-    this.changeStateItem(index, 'scale', value)
+  handleFontFamilyChange = (index, event) => {
+    this.changeStateItem(index, 'fontFamily', event.target.value)
+  };
+
+  handleScaleChange = (index, event) => {
+    this.changeStateItem(index, 'scale', event.target.value)
   };
 
   handleSeedChange = (index, value) => {
     this.changeStateItem(index, 'seed', value)
   };
 
-  handleTypeChange = (index, event) => {
-    this.changeStateItem(index, 'type', event.currentTarget.value)
-  };
-
   render (_, { items, settings }) {
-    const scaler = scalers.get(items[0].type)
-    const sizes = Array.from(new Array(6)).map((_, currentIndex) => scaler({
+    const [{ fontFamily, scale }] = items
+    const sizes = Array.from(new Array(6)).map((_, currentIndex) => scalers.get(scale)({
       currentIndex,
       numberOfItems: 6,
-      scale: items[0].scale,
+      scale: items[0].coefficient,
       seed: items[0].seed
     }))
 
@@ -95,14 +100,15 @@ export default class App extends Component {
       <div id='app'>
         <Header />
         <main>
-          <Preview settings={settings} sizes={sizes} />
+          <Preview fontFamily={fontFamily} sizes={sizes} settings={settings} />
         </main>
         <Controls
           items={items}
+          onCoefficientChange={this.handleCoefficientChange}
           onDisplayUnitChange={this.handleDisplayUnitChange}
+          onFontFamilyChange={this.handleFontFamilyChange}
           onScaleChange={this.handleScaleChange}
           onSeedChange={this.handleSeedChange}
-          onTypeChange={this.handleTypeChange}
           settings={settings}
         />
         <Footer />

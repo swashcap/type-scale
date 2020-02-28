@@ -9,6 +9,7 @@ export default ({
   class: className,
   displayUnit = 'px',
   element: Component = 'p',
+  fontFamily,
   size,
   ...rest
 }) => {
@@ -29,7 +30,14 @@ export default ({
 
   return (
     <div class={cn(style.heading, className)} {...rest}>
-      <Component class={style['heading-component']} style={{ fontSize: `${fontSize}px` }}>
+      <Component
+        class={cn(
+          style['heading-component'],
+          fontFamily === 'serif' && style['heading-component--serif'],
+          fontFamily === 'monospace' && style['heading-component--monospace']
+        )}
+        style={{ fontSize: `${fontSize}px` }}
+      >
         {children}
       </Component>
       {displaySize}

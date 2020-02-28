@@ -37,3 +37,11 @@
 .heading-abbr[title] {
   text-decoration: none;
 }
+
+/* Font family variants */
+.heading-component--serif {
+  font-family: serif;
+}
+.heading-component--monospace {
+  font-family: monospace;
+}
