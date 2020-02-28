@@ -6,9 +6,9 @@ import NumericPicker from './numeric-picker'
 import TextPicker from './text-picker'
 import style from './style.css'
 
-export default ({ items, onCoefficientChange, onDisplayUnitChange, onFontFamilyChange, onScaleChange, onSeedChange, settings, ...rest }) => (
+export default ({ items, onCoefficientChange, onCountChange, onDisplayUnitChange, onFontFamilyChange, onScaleChange, onSeedChange, settings, ...rest }) => (
   <form class={style.controls} {...rest}>
-    {items.map(({ coefficient, fontFamily, scale, seed }, index) => (
+    {items.map(({ coefficient, count, fontFamily, scale, seed }, index) => (
 
       <fieldset class={style['controls-fieldset']} key={index}>
         <TextPicker
@@ -50,6 +50,13 @@ export default ({ items, onCoefficientChange, onDisplayUnitChange, onFontFamilyC
           label='Base size'
           onChange={(event) => onSeedChange(index, event)}
           value={seed}
+        />
+        <NumericPicker
+          class={style['controls-item']}
+          id={`controls-count-${index}`}
+          label='Count'
+          onChange={(event) => onCountChange(index, event)}
+          value={count}
         />
       </fieldset>
     ))}

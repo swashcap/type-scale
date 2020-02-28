@@ -11,6 +11,7 @@ export default class App extends Component {
   state = {
     items: [{
       coefficient: 1,
+      count: 6,
       fontFamily: 'sans-serif',
       scale: 'classic',
       seed: 12
@@ -37,6 +38,10 @@ export default class App extends Component {
     this.changeStateItem(index, 'coefficient', value)
   };
 
+  handleCountChange = (index, value) => {
+    this.changeStateItem(index, 'count', value)
+  };
+
   handleDisplayUnitChange = (event) => {
     this.setState({
       settings: {
@@ -58,10 +63,9 @@ export default class App extends Component {
   };
 
   render (_, { items, settings }) {
-    const [{ fontFamily, scale }] = items
-    const sizes = Array.from(new Array(6)).map((_, currentIndex) => scalers.get(scale)({
+    const [{ count, fontFamily, scale }] = items
+    const sizes = Array.from(new Array(count)).map((_, currentIndex) => scalers.get(scale)({
       currentIndex,
-      numberOfItems: 6,
       scale: items[0].coefficient,
       seed: items[0].seed
     }))
@@ -75,6 +79,7 @@ export default class App extends Component {
         <Controls
           items={items}
           onCoefficientChange={this.handleCoefficientChange}
+          onCountChange={this.handleCountChange}
           onDisplayUnitChange={this.handleDisplayUnitChange}
           onFontFamilyChange={this.handleFontFamilyChange}
           onScaleChange={this.handleScaleChange}
