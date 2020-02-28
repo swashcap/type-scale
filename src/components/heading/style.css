@@ -22,6 +22,7 @@
 .heading-code {
   color: darkslategray;
   display: block;
+  font-family: Consolas, Monaco, "Courier New", monospace;
   font-family: monospace;
   font-size: 1em;
   line-height: 1;
@@ -43,5 +44,5 @@
   font-family: serif;
 }
 .heading-component--monospace {
-  font-family: monospace;
+  font-family: Consolas, Monaco, "Courier New", monospace;
 }
