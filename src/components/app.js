@@ -5,44 +5,14 @@ import Controls from './controls'
 import Footer from './footer'
 import Header from './header'
 import Preview from './preview'
-
-/**
- * {@link http://spencermortensen.com/articles/typographic-scale/}
- */
-export const classic = ({
-  currentIndex,
-  numberOfItems,
-  scale,
-  seed
-}) => seed * Math.pow(2, (currentIndex + 1) / numberOfItems) * scale
-
-export const linear = ({
-  currentIndex,
-  scale,
-  seed
-}) => (currentIndex + 1) * seed * scale
-
-/**
- * {@link https://en.wikipedia.org/wiki/Golden_ratio}
- */
-export const goldenRatio = ({
-  currentIndex,
-  scale,
-  seed
-}) => seed * Math.pow(1.618, currentIndex + 1) * scale
-
-const scalers = new Map([
-  ['classic', classic],
-  ['golden-ratio', goldenRatio],
-  ['linear', linear]
-])
+import scalers from '../helpers/scalers'
 
 export default class App extends Component {
   state = {
     items: [{
       coefficient: 1,
       fontFamily: 'sans-serif',
-      scale: 'linear',
+      scale: 'classic',
       seed: 12
     }],
     settings: {
