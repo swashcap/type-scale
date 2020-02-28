@@ -13,6 +13,7 @@ export default ({ items, onCoefficientChange, onDisplayUnitChange, onFontFamilyC
       <fieldset class={style['controls-fieldset']} key={index}>
         <TextPicker
           class={style['controls-item']}
+          id={`controls-font-family-${index}`}
           label='Font Family'
           onChange={(event) => onFontFamilyChange(index, event)}
           options={{
