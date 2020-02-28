@@ -8,7 +8,7 @@ export default ({ items, label, name, value, ...rest }) => (
   <fieldset class={style['item-picker']} {...rest}>
     <Label class={style['item-picker-legend']} element='legend'>{label}</Label>
     {Object.keys(items).map((key) => (
-      <label class={style['item-picker-label']}>
+      <label class={style['item-picker-label']} key={key}>
         <input
           class={style['item-picker-input']}
           checked={key === value}
@@ -16,7 +16,7 @@ export default ({ items, label, name, value, ...rest }) => (
           type='radio'
           value={key}
         />
-        <span class={style['item-picker-text']} >{items[key]}</span>
+        <span class={style['item-picker-text']}>{items[key]}</span>
       </label>
     ))}
   </fieldset>

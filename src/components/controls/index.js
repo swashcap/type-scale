@@ -10,7 +10,7 @@ export default ({ items, onDisplayUnitChange, onScaleChange, onSeedChange, onTyp
   <form class={style.controls} {...rest}>
     {items.map(({ scale, seed, type }, index) => (
 
-      <fieldset class={style['controls-fieldset']}>
+      <fieldset class={style['controls-fieldset']} key={index}>
         <TextPicker
           class={style['controls-item']}
           id={`controls-type-${index}`}

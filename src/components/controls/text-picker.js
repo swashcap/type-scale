@@ -15,7 +15,7 @@ export default ({ class: className, label, id, onChange, options, value, ...rest
       value={value}
     >
       {Object.keys(options).map((value) => (
-        <option value={value}>{options[value]}</option>
+        <option key={value} value={value}>{options[value]}</option>
       ))}
     </select>
   </div>

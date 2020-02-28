@@ -7,7 +7,12 @@ import style from './style.css'
 export default ({ settings, sizes, ...rest }) => (
   <div class={style.preview} {...rest}>
     {sizes.slice().reverse().map((size, index) => (
-      <Heading class={style['preview-item']} displayUnit={settings.displayUnit} size={size}>
+      <Heading
+        class={style['preview-item']}
+        displayUnit={settings.displayUnit}
+        key={size}
+        size={size}
+      >
         Heading {index + 1}
       </Heading>
     ))}
