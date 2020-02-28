@@ -54,7 +54,6 @@ body {
 	}
 	#app main {
 		height: 100vh;
-		overflow: hidden;
 		width: calc(100vw - 15rem);
 	}
 }

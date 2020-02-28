@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h } from 'preact'
+import { Fragment, h } from 'preact'
 
 import style from './style.css'
 import { cn } from '../../helpers/classnames'
@@ -13,24 +13,26 @@ export default ({
   size,
   ...rest
 }) => {
-  const fontSize = Math.round(size * 100) / 100
-  const emSize = Math.round(size * 100) / 1600
+  const fontSize = Math.round(size)
+  const emSize = Math.round(fontSize * 100) / 1600
+  const displayFontSize = fontSize % 1 ? fontSize.toFixed(1) : fontSize
+  const displayEmSize = emSize % 1 ? emSize.toFixed(2) : emSize
 
   const displaySize = displayUnit === 'px'
     ? (
-
-      <code class={style['heading-code']}>
-        {fontSize % 1 ? fontSize.toFixed(2) : fontSize}<abbr class={style['heading-abbr']} title='pixels'>px</abbr>
-      </code>
-    ) : (
-      <code class={style['heading-code']}>
-        {emSize % 1 ? emSize.toFixed(2) : emSize}em
-      </code>
+      <Fragment>
+        {displayFontSize}<abbr class={style['heading-abbr']} title='pixels'>px</abbr>
+      </Fragment>
     )
+    : `${displayEmSize}em`
 
   return (
-    <div class={cn(style.heading, className)} {...rest}>
+    <div
+      class={cn(style.heading, className)}
+      {...rest}
+    >
       <Component
+        aria-label={`${children}, ${displayUnit === 'px' ? `${displayFontSize} pixels` : `${displayEmSize} ems`}`}
         class={cn(
           style['heading-component'],
           fontFamily === 'bogle' && style['heading-component--bogle'],
@@ -38,10 +40,13 @@ export default ({
           fontFamily === 'serif' && style['heading-component--serif']
         )}
         style={{ fontSize: `${fontSize}px` }}
+        tabindex='1'
       >
         {children}
       </Component>
-      {displaySize}
+      <code aria-label='hidden' class={style['heading-code']}>
+        {displaySize}
+      </code>
     </div>
   )
 }

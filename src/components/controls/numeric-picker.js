@@ -8,32 +8,24 @@ import style from './numeric-picker.css'
 const DEFAULT_STEP = 1
 
 export default class NumericPicker extends Component {
-  handleDecrementClick = () => {
-    const { onChange, step = DEFAULT_STEP, value } = this.props
-
-    onChange(Math.round((value - step) * 10) / 10)
-  };
-
-  handleIncrementClick = () => {
-    const { onChange, step = DEFAULT_STEP, value } = this.props
-
-    onChange(Math.round((value + step) * 10) / 10)
-  };
-
   handleInputChange = (event) => {
-    this.props.onChange(event.currentTarget.value)
+    const value = parseFloat(event.currentTarget.value, 10)
+    this.props.onChange(value)
   };
 
   render ({ id, label, onChange, step = DEFAULT_STEP, value, ...rest }) {
+    const decrementValue = Math.round((value - step) * 10) / 10
+    const incrementValue = Math.round((value + step) * 10) / 10
+
     return (
       <div {...rest}>
         <Label for={id}>{label}</Label>
         <div class={style['numeric-picker-wrapper']}>
           <button
             aria-controls={id}
-            aria-label='Decrease scale'
+            aria-label={`Decrease ${label} to ${decrementValue}`}
             class={style['numeric-picker-button']}
-            onClick={this.handleDecrementClick}
+            onClick={() => onChange(decrementValue)}
             type='button'
           >
             <span>
@@ -52,9 +44,9 @@ export default class NumericPicker extends Component {
           />
           <button
             aria-controls={id}
-            aria-label='Increase scale'
+            aria-label={`Increase ${label} to ${incrementValue}`}
             class={`${style['numeric-picker-button']} ${style['numeric-picker-button-alt']}`}
-            onClick={this.handleIncrementClick}
+            onClick={() => onChange(incrementValue)}
             type='button'
           >
             <span>
