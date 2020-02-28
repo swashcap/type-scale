@@ -40,9 +40,12 @@
 }
 
 /* Font family variants */
-.heading-component--serif {
-  font-family: serif;
+.heading-component--bogle {
+  font-family: BogleWeb, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .heading-component--monospace {
   font-family: Consolas, Monaco, "Courier New", monospace;
+}
+.heading-component--serif {
+  font-family: serif;
 }

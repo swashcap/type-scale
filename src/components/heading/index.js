@@ -33,8 +33,9 @@ export default ({
       <Component
         class={cn(
           style['heading-component'],
-          fontFamily === 'serif' && style['heading-component--serif'],
-          fontFamily === 'monospace' && style['heading-component--monospace']
+          fontFamily === 'bogle' && style['heading-component--bogle'],
+          fontFamily === 'monospace' && style['heading-component--monospace'],
+          fontFamily === 'serif' && style['heading-component--serif']
         )}
         style={{ fontSize: `${fontSize}px` }}
       >

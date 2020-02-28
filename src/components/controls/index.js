@@ -19,7 +19,8 @@ export default ({ items, onCoefficientChange, onDisplayUnitChange, onFontFamilyC
           options={{
             'sans-serif': 'Sans Serif',
             monospace: 'Monospace',
-            serif: 'Serif'
+            serif: 'Serif',
+            bogle: 'BogleWeb'
           }}
           value={fontFamily}
         />
