@@ -7,9 +7,9 @@
     "start": "per-env",
     "start:production": "npm run -s serve",
     "start:development": "npm run -s dev",
-    "build": "preact build --dest docs --prerenderUrls false --sw false --template src/index.html",
+    "build": "preact build --dest docs --prerenderUrls false --sw false",
     "serve": "npm run build && preact serve",
-    "dev": "preact watch --template src/index.html",
+    "dev": "preact watch",
     "lint": "standard '{src,tests}/**/*.js'",
     "test": "jest"
   },
