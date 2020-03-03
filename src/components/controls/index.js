@@ -6,36 +6,38 @@ import NumericPicker from './numeric-picker'
 import TextPicker from './text-picker'
 import style from './style.css'
 
-export default ({ items, onCoefficientChange, onCountChange, onDisplayUnitChange, onFontFamilyChange, onScaleChange, onSeedChange, settings, ...rest }) => (
+export default ({ groups, onCoefficientChange, onCountChange, onDisplayUnitChange, onFontFamilyChange, onScaleChange, onSeedChange, settings, ...rest }) => (
   <form class={style.controls} {...rest}>
-    {items.map(({ coefficient, count, fontFamily, scale, seed }, index) => (
+    <fieldset class={style['controls-fieldset']}>
+      <TextPicker
+        class={style['controls-item']}
+        id='controls-font-family'
+        label='Font Family'
+        onChange={onFontFamilyChange}
+        options={{
+          'sans-serif': 'Sans Serif',
+          monospace: 'Monospace',
+          serif: 'Serif',
+          bogle: 'BogleWeb'
+        }}
+        value={settings.fontFamily}
+      />
+      <TextPicker
+        class={style['controls-item']}
+        id='controls-scale'
+        label='Scale'
+        onChange={onScaleChange}
+        options={{
+          classic: 'Classic',
+          linear: 'Linear',
+          'golden-ratio': 'Golden Ratio'
+        }}
+        value={settings.scale}
+      />
+    </fieldset>
 
+    {groups.map(({ coefficient, items, seed }, index) => (
       <fieldset class={style['controls-fieldset']} key={index}>
-        <TextPicker
-          class={style['controls-item']}
-          id={`controls-font-family-${index}`}
-          label='Font Family'
-          onChange={(event) => onFontFamilyChange(index, event)}
-          options={{
-            'sans-serif': 'Sans Serif',
-            monospace: 'Monospace',
-            serif: 'Serif',
-            bogle: 'BogleWeb'
-          }}
-          value={fontFamily}
-        />
-        <TextPicker
-          class={style['controls-item']}
-          id={`controls-scale-${index}`}
-          label='Scale'
-          onChange={(event) => onScaleChange(index, event)}
-          options={{
-            classic: 'Classic',
-            linear: 'Linear',
-            'golden-ratio': 'Golden Ratio'
-          }}
-          value={scale}
-        />
         <NumericPicker
           class={style['controls-item']}
           id={`controls-coefficient-${index}`}
@@ -56,7 +58,7 @@ export default ({ items, onCoefficientChange, onCountChange, onDisplayUnitChange
           id={`controls-count-${index}`}
           label='Count'
           onChange={(event) => onCountChange(index, event)}
-          value={count}
+          value={items.length}
         />
       </fieldset>
     ))}

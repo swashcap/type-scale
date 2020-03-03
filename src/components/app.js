@@ -5,79 +5,121 @@ import Controls from './controls'
 import Footer from './footer'
 import Header from './header'
 import Preview from './preview'
-import scalers from '../helpers/scalers'
 
 export default class App extends Component {
   state = {
-    items: [{
+    groups: [{
       coefficient: 1,
-      count: 6,
-      fontFamily: 'sans-serif',
-      scale: 'classic',
+      items: [
+        'Heading 1',
+        'Heading 2',
+        'Heading 3',
+        'Heading 4',
+        'Heading 5',
+        'Heading 6'
+      ],
       seed: 12
     }],
     settings: {
-      displayUnit: 'px'
+      displayUnit: 'px',
+      fontFamily: 'sans-serif',
+      scale: 'classic'
     }
   };
 
-  changeStateItem = (index, key, value) => {
+  handleCoefficientChange = (index, coefficient) => {
     this.setState({
-      items: this.state.items.map((item, i) => (
+      groups: this.state.groups.map((group, i) => (
         i === index
-          ? {
-            ...item,
-            [key]: value
-          }
-          : item
+          ? { ...group, coefficient }
+          : group
       ))
     })
   };
 
-  handleCoefficientChange = (index, value) => {
-    this.changeStateItem(index, 'coefficient', value)
+  handleContentChange = (index, itemIndex, value) => {
+    this.setState({
+      groups: this.state.groups.map((group, i) => ({
+        ...group,
+        items: i === index
+          ? group.items.map((item, j) => j === itemIndex ? value : item)
+          : group
+      }))
+    })
   };
 
   handleCountChange = (index, value) => {
-    this.changeStateItem(index, 'count', value)
+    const { groups } = this.state
+    const items = [...groups[index].items]
+    const previousValue = items.length
+
+    if (value > previousValue) {
+      for (let i = previousValue; i < value; i += 1) {
+        items.push(`Heading ${i + 1}`)
+      }
+    } else if (value < previousValue) {
+      items.splice(previousValue - 1)
+    }
+
+    this.setState({
+      groups: groups.map((group, i) => (
+        i === index
+          ? { ...group, items }
+          : group
+      ))
+    })
   };
 
   handleDisplayUnitChange = (event) => {
     this.setState({
       settings: {
+        ...this.state.settings,
         displayUnit: event.target.value
       }
     })
   };
 
-  handleFontFamilyChange = (index, event) => {
-    this.changeStateItem(index, 'fontFamily', event.target.value)
+  handleFontFamilyChange = (event) => {
+    this.setState({
+      settings: {
+        ...this.state.settings,
+        fontFamily: event.target.value
+      }
+    })
   };
 
-  handleScaleChange = (index, event) => {
-    this.changeStateItem(index, 'scale', event.target.value)
+  handleScaleChange = (event) => {
+    this.setState({
+      settings: {
+        ...this.state.settings,
+        scale: event.target.value
+      }
+    })
   };
 
-  handleSeedChange = (index, value) => {
-    this.changeStateItem(index, 'seed', value)
+  handleSeedChange = (index, seed) => {
+    this.setState({
+      groups: this.state.groups.map((group, i) => (
+        i === index
+          ? { ...group, seed }
+          : group
+      ))
+    })
   };
 
-  render (_, { items, settings }) {
-    const [{ count, fontFamily, scale }] = items
-    const sizes = Array.from(new Array(count)).map((_, currentIndex) => scalers.get(scale)({
-      currentIndex,
-      scale: items[0].coefficient,
-      seed: items[0].seed
-    }))
-
+  render (_, { groups, settings }) {
     return (
       <div id='app'>
         <Header />
         <main>
-          <Preview fontFamily={fontFamily} sizes={sizes} settings={settings} />
+          <Preview
+            groups={groups}
+            onContentChange={this.handleContentChange}
+            settings={settings}
+          />
         </main>
         <Controls
-          items={items}
+          groups={groups}
           onCoefficientChange={this.handleCoefficientChange}
           onCountChange={this.handleCountChange}
           onDisplayUnitChange={this.handleDisplayUnitChange}

@@ -1,6 +1,7 @@
 /** @jsx h */
 import { Fragment, h } from 'preact'
 
+import ContentEditable from '../content-editable'
 import style from './style.css'
 import { cn } from '../../helpers/classnames'
 
@@ -8,8 +9,8 @@ export default ({
   children,
   class: className,
   displayUnit = 'px',
-  element: Component = 'p',
   fontFamily,
+  onContentChange,
   size,
   ...rest
 }) => {
@@ -31,7 +32,7 @@ export default ({
       class={cn(style.heading, className)}
       {...rest}
     >
-      <Component
+      <div
         aria-label={`${children}, ${displayUnit === 'px' ? `${displayFontSize} pixels` : `${displayEmSize} ems`}`}
         class={cn(
           style['heading-component'],
@@ -40,10 +41,15 @@ export default ({
           fontFamily === 'serif' && style['heading-component--serif']
         )}
         style={{ fontSize: `${fontSize}px` }}
-        tabindex='1'
       >
-        {children}
-      </Component>
+        <ContentEditable
+          autoComplete='off'
+          onChange={onContentChange}
+          spellcheck={false}
+        >
+          {children}
+        </ContentEditable>
+      </div>
       <code aria-label='hidden' class={style['heading-code']}>
         {displaySize}
       </code>
