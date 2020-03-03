@@ -13,7 +13,7 @@ body {
 html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background: linen;
+	background: white;
 	color: black;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -37,7 +37,6 @@ body {
 	padding-right: 1.5rem;
 }
 #app main {
-	background: #fff;
 	-webkit-box-ordinal-group: 0;
 	    -ms-flex-order: -1;
 	        order: -1;
@@ -53,19 +52,19 @@ body {
 
 @media (min-width: 36em) {
 	#app {
-		-webkit-box-align: start;
-		    -ms-flex-align: start;
-		        align-items: flex-start;
-		-ms-flex-wrap: wrap;
-		    flex-wrap: wrap;
-		height: 100vh;
-		min-height: 0;
+          position: relative;
+          min-height: 100vh;
 	}
-	#app > * {
-		width: 15rem;
+	#app header {
+	  width: 15rem;
+          height: 100vh;
+          overflow-y: scroll;
+          position: fixed;
+          right: 0;
+          top: 0;
 	}
 	#app main {
-		height: 100vh;
+		min-height: 100vh;
 		width: calc(100vw - 15rem);
 	}
 }
@@ -74,7 +73,7 @@ body {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
   }
-  #app > * {
+  #app header {
     width: 20rem;
   }
   #app main {
@@ -83,6 +82,47 @@ body {
 }
 
 @font-face{font-family:BogleWeb;src:url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Bold.eot);src:url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Bold.eot?#iefix) format("embedded-opentype"),url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Bold.woff2) format("woff2"),url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Bold.woff) format("woff"),url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Bold.ttf) format("truetype");font-weight:700;font-style:normal;}@font-face{font-family:BogleWeb;src:url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Bold.eot);src:url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Bold.eot?#iefix) format("embedded-opentype"),url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Bold.woff2) format("woff2"),url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Bold.woff) format("woff"),url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Bold.ttf) format("truetype");font-weight:600;font-style:normal;}@font-face{font-family:BogleWeb;src:url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Regular.eot);src:url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Regular.eot?#iefix) format("embedded-opentype"),url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Regular.woff2) format("woff2"),url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Regular.woff) format("woff"),url(//i5.walmartimages.com/dfw/63fd9f59-a78c/fcfae9b6-2f69-4f89-beed-f0eeb4237946/v1/BogleWeb_subset-Regular.ttf) format("truetype");font-weight:400;font-style:normal;}
+
+.button__1IeZz {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: 700;
+  line-height: inherit;
+  margin: 0;
+  padding: .5rem;
+  text-align: center;
+}
+.button__1IeZz > span {
+  background: orangered;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  color: white;
+  display: inline-block;
+  padding: .125rem .5rem;
+}
+.button__1IeZz:focus > span,
+.button__1IeZz:hover > span {
+  background: crimson;
+}
+.button__1IeZz:active > span {
+  background: mediumvioletred;
+}
+
+/** Secondary variant */
+.button--secondary__2h9i3 > span {
+  background: indigo;
+}
+.button--secondary__2h9i3:focus > span,
+.button--secondary__2h9i3:hover > span {
+  background: purple;
+}
+.button--secondary__2h9i3:active > span {
+  background: mediumvioletred;
+}
+
 
 .label__xQGF4 {
   display: block;
@@ -225,38 +265,30 @@ body {
   width: 100%;
 }
 .controls__3v8MM {
-
 }
 
 .controls-fieldset__3po-o {
-  border: none;
+  border-color: darkgray;
+  border-style: solid;
+  border-width: 0 0 1px;
   display: block;
-  margin: 0;
-  padding: 0;
+  margin: 0 0 1rem;
+  padding: 0 0 .5rem;
 }
 
 .controls-item__jGIMd {
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  margin-bottom: .75rem;
 }
 
-.footer__14P9B {
-  font-size: 80%;
-  line-height: 1;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
-  text-align: center;
-}
-
-.footer-fine-print__37ar7 {
-  display: block;
-  font-size: 100%;
-  line-height: inherit;
-}
-.footer-fine-print__37ar7 a {
-  color: inherit;
-}
 .header__3QGkI {
+  background: linen;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   padding-bottom: 1rem;
   padding-top: 1rem;
   text-align: center;
@@ -267,7 +299,7 @@ body {
   font-size: 150%;
   font-weight: 400;
   line-height: 1.5;
-  margin: 0;
+  margin: 0 0 1rem;
 }
 .header-name__2z2UV span:nth-child(3),
 .header-name__2z2UV span:nth-child(4) {
@@ -285,6 +317,27 @@ body {
 .header-name__2z2UV span:nth-child(10) {
   color: orangered;
 }
+
+/* Content */
+
+.header-content__12auI {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  margin-bottom: 2rem;
+}
+
+/* Fine print */
+
+.header-fine-print__2PkVC {
+  display: block;
+  font-size: 80%;
+  line-height: 1;
+}
+.header-fine-print__2PkVC a {
+  color: inherit;
+}
+
 .heading__dcnRF + .heading__dcnRF {
   margin-top: 1.5rem;
 }
@@ -342,11 +395,9 @@ body {
 .heading-component--serif__3kEWv {
   font-family: serif;
 }
-.preview__29z7d {
+.preview-item--1__210sn {
+  color: slategrey;
 }
 
-.preview-item__3X7JB {
-}
 
-
-/*# sourceMappingURL=ssr-bundle.10b30.css.map*/
+/*# sourceMappingURL=ssr-bundle.a7d31.css.map*/

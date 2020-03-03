@@ -1,4 +1,7 @@
 .header {
+  background: linen;
+  display: flex;
+  flex-direction: column;
   padding-bottom: 1rem;
   padding-top: 1rem;
   text-align: center;
@@ -9,7 +12,7 @@
   font-size: 150%;
   font-weight: 400;
   line-height: 1.5;
-  margin: 0;
+  margin: 0 0 1rem;
 }
 .header-name span:nth-child(3),
 .header-name span:nth-child(4) {
@@ -26,4 +29,22 @@
 .header-name span:nth-child(9),
 .header-name span:nth-child(10) {
   color: orangered;
+}
+
+/* Content */
+
+.header-content {
+  flex: 2;
+  margin-bottom: 2rem;
+}
+
+/* Fine print */
+
+.header-fine-print {
+  display: block;
+  font-size: 80%;
+  line-height: 1;
+}
+.header-fine-print a {
+  color: inherit;
 }

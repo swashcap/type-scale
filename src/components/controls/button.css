@@ -1,0 +1,40 @@
+.button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: 700;
+  line-height: inherit;
+  margin: 0;
+  padding: .5rem;
+  text-align: center;
+}
+.button > span {
+  background: orangered;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  color: white;
+  display: inline-block;
+  padding: .125rem .5rem;
+}
+.button:focus > span,
+.button:hover > span {
+  background: crimson;
+}
+.button:active > span {
+  background: mediumvioletred;
+}
+
+/** Secondary variant */
+.button--secondary > span {
+  background: indigo;
+}
+.button--secondary:focus > span,
+.button--secondary:hover > span {
+  background: purple;
+}
+.button--secondary:active > span {
+  background: mediumvioletred;
+}
+

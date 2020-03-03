@@ -2,7 +2,6 @@
 import { h, Component } from 'preact'
 
 import Controls from './controls'
-import Footer from './footer'
 import Header from './header'
 import Preview from './preview'
 
@@ -88,6 +87,34 @@ export default class App extends Component {
     })
   };
 
+  handleGroupChange = (value) => {
+    const { groups } = this.state
+
+    if (value > groups.length) {
+      this.setState({
+        groups: Array.from(new Array(value)).map((_, i) => (
+          groups[i]
+            ? groups[i]
+            : {
+              coefficient: 1,
+              items: [
+                'Heading 1',
+                'Heading 2',
+                'Heading 3',
+                'Heading 4',
+                'Heading 5'
+              ],
+              seed: 10
+            }
+        ))
+      })
+    } else if (value < groups.length) {
+      this.setState({
+        groups: groups.filter((_, i) => i < value)
+      })
+    }
+  };
+
   handleScaleChange = (event) => {
     this.setState({
       settings: {
@@ -110,7 +137,19 @@ export default class App extends Component {
   render (_, { groups, settings }) {
     return (
       <div id='app'>
-        <Header />
+        <Header>
+          <Controls
+            groups={groups}
+            onCoefficientChange={this.handleCoefficientChange}
+            onCountChange={this.handleCountChange}
+            onDisplayUnitChange={this.handleDisplayUnitChange}
+            onFontFamilyChange={this.handleFontFamilyChange}
+            onGroupChange={this.handleGroupChange}
+            onScaleChange={this.handleScaleChange}
+            onSeedChange={this.handleSeedChange}
+            settings={settings}
+          />
+        </Header>
         <main>
           <Preview
             groups={groups}
@@ -118,17 +157,6 @@ export default class App extends Component {
             settings={settings}
           />
         </main>
-        <Controls
-          groups={groups}
-          onCoefficientChange={this.handleCoefficientChange}
-          onCountChange={this.handleCountChange}
-          onDisplayUnitChange={this.handleDisplayUnitChange}
-          onFontFamilyChange={this.handleFontFamilyChange}
-          onScaleChange={this.handleScaleChange}
-          onSeedChange={this.handleSeedChange}
-          settings={settings}
-        />
-        <Footer />
       </div>
     )
   }

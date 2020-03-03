@@ -5,22 +5,36 @@ import Heading from '../heading'
 import style from './style.css'
 import scalers from '../../helpers/scalers'
 
-export default ({ groups, onContentChange, settings: { displayUnit, fontFamily, scale }, ...rest }) => {
+export default ({
+  groups,
+  onContentChange,
+  settings: { displayUnit, fontFamily, scale },
+  ...rest
+}) => {
   const scaler = scalers.get(scale)
-  const sizes = [...groups[0].items].reverse().map((children, currentIndex) => ({
-    children,
-    size: scaler({
-      currentIndex,
-      scale: groups[0].coefficient,
-      seed: groups[0].seed
+  const sizes = groups
+    .reduce((memo, { coefficient, items, seed }, groupIndex) => (
+      memo.concat(items.map((children, currentIndex) => ({
+        children,
+        groupIndex,
+        size: scaler({
+          currentIndex,
+          scale: coefficient,
+          seed
+        })
+      })))
+    ), [])
+    .sort(({ size: a }, { size: b }) => {
+      if (a > b) return -1
+      else if (b < a) return 1
+      return 0
     })
-  })).reverse()
 
   return (
-    <div class={style.preview} {...rest}>
-      {sizes.map(({ children, size }, index) => (
+    <div {...rest}>
+      {sizes.map(({ children, groupIndex, size }, index) => (
         <Heading
-          class={style['preview-item']}
+          class={`${groupIndex > 0 ? style['preview-item--1'] : ''}`}
           displayUnit={displayUnit}
           fontFamily={fontFamily}
           key={size}

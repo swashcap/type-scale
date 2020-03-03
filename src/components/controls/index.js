@@ -1,12 +1,24 @@
 /** @jsx h */
 import { h } from 'preact'
 
+import Button from './button'
 import ItemPicker from './item-picker'
 import NumericPicker from './numeric-picker'
 import TextPicker from './text-picker'
 import style from './style.css'
 
-export default ({ groups, onCoefficientChange, onCountChange, onDisplayUnitChange, onFontFamilyChange, onScaleChange, onSeedChange, settings, ...rest }) => (
+export default ({
+  groups,
+  onCoefficientChange,
+  onCountChange,
+  onDisplayUnitChange,
+  onFontFamilyChange,
+  onGroupChange,
+  onScaleChange,
+  onSeedChange,
+  settings,
+  ...rest
+}) => (
   <form class={style.controls} {...rest}>
     <fieldset class={style['controls-fieldset']}>
       <TextPicker
@@ -62,7 +74,32 @@ export default ({ groups, onCoefficientChange, onCountChange, onDisplayUnitChang
         />
       </fieldset>
     ))}
-
+    <div
+      style={{
+        margin: '0 -.5rem 1rem'
+      }}
+    >
+      {groups.length === 1
+        ? (
+          <Button
+            children='Add scale'
+            onClick={(event) => {
+              event.preventDefault()
+              onGroupChange(groups.length + 1)
+            }}
+          />
+        )
+        : (
+          <Button
+            children='Remove scale'
+            onClick={(event) => {
+              event.preventDefault()
+              onGroupChange(groups.length - 1)
+            }}
+            variant='secondary'
+          />
+        )}
+    </div>
     <ItemPicker
       label='Display units'
       items={{
